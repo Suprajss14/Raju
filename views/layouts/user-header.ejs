@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="public\images\IMG_5282.png" type="image/x-icon">
+    <title>CAKES</title>
+    <base href="/"> 
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../public/css/style.css">
+ <!-- JQuery -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>	
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    
+
+</head>
+<body>
+
+<!-- header section starts  -->
+<header class="user-header">
+    <div class="user-head">
+        <%if (locals.user){%>
+        <a class="text-light" href="/profile"><i class="fa fa-user"></i> <%= locals.user.name %></a>
+        <%}else{%>
+        <a class="text-light" href="/login"><i class="fa fa-user"></i> User</a>
+        <%}%>
+    </div>
+
+    <div class="header">
+    
+        <a src="public\images\new.png"class="logo"><span>Cake Mane </span></a>
+        <!-- <img src="public\images\jhruifjnerjkghdfuiehdfku.png" class="logo" alt="Cake Mane logo">
+<span>Cake Mane</span> -->
+
+    
+        <nav class="navbar">
+            <ul>
+                <li><a href="/">home</a></li>
+                <li><a href="/products">products</a></li>
+                <li><a href="/about">about</a></li>
+                <li><a href="/contact">contact us</a></li>
+                <li><a href="#"><i class="fa fa-user"></i> <%= locals.user ? user.name:'Account' %> </a>
+                    <ul>
+                        <% if (locals.user){%>
+                            <li><a href="/profile">My profile</a></li>
+                            <li><a href="/orders">my orders</a></li>
+                            <li><a href="/logout">logout</a></li>
+    
+                        <%}else{%>
+                            <li><a href="/login">login</a></li>
+                            <li><a href="/register">register</a></li>
+                        <%}%>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    
+        <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+            <a href="/wishlist" ><i class="fa fa-heart position-relative">
+                <% if (locals.user){%>
+                    <span id="wishlist-count" class="position-absolute top-25 translate-middle badge rounded-pill bg-dark"><%=wishcount%></span>
+                    <%}%>
+                </i>
+            </i></a>
+            <a href="/cart"> <i class="fas fa-shopping-cart position-relative">
+                <% if (locals.user){%>
+                <span id="cart-count" class="position-absolute top-25 translate-middle badge rounded-pill bg-dark"><%=count%></span>
+                <%}%>
+            </i></a>
+            <div id="menu-btn" class="fas fa-bars"></div>
+    
+        </div>
+    
+        <form action="" class="search-form">
+            <input type="text" name="" placeholder="search product here..." id="search-box" onkeyup="sendData(this)">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+        <section id="search-results">
+
+        </section>
+    
+    </div>
+</header>

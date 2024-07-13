@@ -1,0 +1,91 @@
+<%- include('../layouts/user-header.ejs') %>
+<section class="register-form">
+    <form id="user-signup-form" method="post" action="/register">
+        <% if (success && Array.isArray(success)) { %>
+            <% success.forEach(function(msg){ %>
+                <div class="alert alert-success" role="alert">
+                    <%= msg %>
+                </div>
+            <% }) %>
+        <% } %>
+
+        <% if (error && Array.isArray(error)) { %>
+            <% error.forEach(function(err){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= err %>
+                </div>
+            <% }) %>
+        <% } %>
+        <h3>Register Now</h3>
+        <div class="inputBox">
+            <span class="fas fa-user"></span>
+            <input type="text" name="name" placeholder="Enter your name" id="name" required>
+        </div>
+        <div class="inputBox">
+            <span class="fas fa-envelope"></span>
+            <input type="email" name="email" placeholder="Enter your email" id="email" required>
+        </div>
+        <div class="inputBox">
+            <span class="fas fa-phone"></span>
+            <input type="number" name="contact" placeholder="Enter your contact no." id="contact" required>
+        </div>
+        <div class="inputBox">
+            <span class="fas fa-lock"></span>
+            <input type="password" name="password" placeholder="Enter your password" id="password" required>
+        </div>
+        <div class="inputBox">
+            <span class="fas fa-lock"></span>
+            <input type="password" name="cpassword" placeholder="Confirm your password" id="cpassword" required>
+        </div>
+        <input type="hidden" value="" name="image">
+        <!-- Change the type to "button" to prevent automatic form submission -->
+        <input type="button" value="Sign Up" class="btn" onclick="submitForm()">
+        <a href="/login" class="btn">Already have an account</a>
+    </form>
+    <script>
+        function submitForm() {
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                contact: document.getElementById('contact').value,
+                password: document.getElementById('password').value,
+                cpassword: document.getElementById('cpassword').value,
+                image: document.getElementsByName('image')[0].value
+            };
+
+            // Make an HTTP POST request to the server-side route
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to register user');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Log the response from the server
+                // Handle success response if needed
+                if (data.success) {
+                    // Redirect or show a success message
+                    alert('Registration successful!');
+                    window.location.href = '/login';
+                } else {
+                    // Show error messages
+                    alert(data.message || 'Registration failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error registering user:', error);
+                // Handle error if registration fails
+                alert('An error occurred during registration. Please try again.');
+            });
+        }
+    </script>
+</section>
+<%- include('../layouts/user-footer.ejs') %>
