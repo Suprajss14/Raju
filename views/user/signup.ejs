@@ -24,10 +24,12 @@
         <div class="inputBox">
             <span class="fas fa-envelope"></span>
             <input type="email" name="email" placeholder="Enter your email" id="email" required>
+            <p>Email is Used Only For Verification</p>
         </div>
         <div class="inputBox">
             <span class="fas fa-phone"></span>
             <input type="number" name="contact" placeholder="Enter your contact no." id="contact" required>
+            <p>Used for Location Detaile</p>
         </div>
         <div class="inputBox">
             <span class="fas fa-lock"></span>
@@ -83,7 +85,7 @@
             .catch(error => {
                 console.error('Error registering user:', error);
                 // Handle error if registration fails
-                alert('An error occurred during registration. Please try again.');
+                alert('We have sent an email for verification. If you havent recieved then please recheck your email address');
             });
         }
     </script>
