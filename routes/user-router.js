@@ -39,7 +39,7 @@ transporter.verify((err, success) => {
 
 const sendVerificationEmail = async ({ _id, email }, res) => {
   try {
-    const url = "http://localhost:4000/";
+    const url = process.env.PORT || 4000;
     const uniqueString = uuidv4();
     const mailOptions = {
       from: process.env.EMAIL_USER,
