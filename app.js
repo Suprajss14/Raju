@@ -159,9 +159,9 @@ app.get('*', async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(Listening to the server on http://localhost:${port});
-});
+// app.listen(port, () => {
+//   console.log(Listening to the server on http://localhost:${port});
+// });
 
 // Function to generate a unique secret
 function generateSecret() {
