@@ -158,10 +158,9 @@ app.get('*', async (req, res) => {
   res.render('user/404', { user, count, wishcount }); // Render user 404 page with user data and counts
 });
 
-// Start the server
-// app.listen(port, () => {
-//   console.log(Listening to the server on http://localhost:${port});
-// });
+app.listen(port, '0.0.0.0', () => {
+  console.log(Server is running on http://0.0.0.0:${port});
+});
 
 // Function to generate a unique secret
 function generateSecret() {
