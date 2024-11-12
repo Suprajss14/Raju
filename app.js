@@ -16,7 +16,7 @@ const nodemailer = require('nodemailer');
 const Cart = require('./models/cartModel.js'); // Add this line
 const Wishlist = require('./models/wishlistModel.js'); // Add this line if you also use Wishlist model
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 80;
 
 // Connect to MongoDB database
 mongoose
@@ -159,8 +159,9 @@ app.get('*', async (req, res) => {
 });
 
 // Start the server
-// app.listen(port, () => {
-//   console.log(`Listening to the server on http://localhost:${port}`);
+// Listen on the specified port and bind to 0.0.0.0 to allow external access
+// app.listen(port, '15.207.116.0', () => {
+//   console.log(Server is running on http://15.207.116.0:${port});
 // });
 
 // Function to generate a unique secret
