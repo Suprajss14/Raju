@@ -159,14 +159,11 @@ app.get('*', async (req, res) => {
 });
 
 // Start the server
-// Listen on the specified port and bind to 0.0.0.0 to allow external access
-// app.listen(port, '15.207.116.0', () => {
-//   console.log(Server is running on http://15.207.116.0:${port});
-// });
+app.listen(port, () => {
+  console.log(Listening to the server on http://localhost:${port});
+});
 
 // Function to generate a unique secret
 function generateSecret() {
   return crypto.randomBytes(64).toString('hex');
 }
-
-
